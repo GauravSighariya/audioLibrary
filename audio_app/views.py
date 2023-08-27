@@ -15,16 +15,7 @@ import audioread
 import io    
 
 
-# def get_audio_duration(audio_file):
-#     audio_extension = audio_file.name.split('.')[-1]
-#     duration = 0
-#     mime_type = f"audio/{audio_extension}"
-    
-#     if audio_extension in ['mp3', 'wav', 'ogg']:
-#         with audioread.audio_open(audio_file.temporary_file_path()) as f:
-#             duration = f.duration
-#     # Handle other audio formats here if needed
-#     return duration
+
 
 def get_audio_duration(audio_file):
     """
