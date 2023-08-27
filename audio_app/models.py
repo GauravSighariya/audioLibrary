@@ -1,6 +1,7 @@
 from django.db import models
 
 class UploadedAudio(models.Model):
+    # basic model class field for save the data to database
     audio_file = models.FileField(upload_to='')
     upload_date = models.DateTimeField(auto_now_add=True)
     file_size = models.PositiveIntegerField(blank=True,null=True)
