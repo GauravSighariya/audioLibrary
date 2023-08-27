@@ -1,0 +1,111 @@
+<!-- {% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Upload Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelementplayer.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelement-and-player.min.js"></script>
+    <!-- Add your own custom stylesheets if needed -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        audio {
+            width: 100%;
+        }
+        .warning {
+            color: red;
+            font-weight: bold;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-content: center;
+        }
+        .a{
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Audio Upload Dashboard</h1>
+        {% if warning_message %}
+        <p class="warning">{{ warning_message }}</p>
+        {% endif %}
+        <a href="{% url 'upload_audio' %}" class="button">Home</a>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="audio_file" multiple accept=".mp3,.wav,.ogg">
+            <button type="submit">Upload</button>
+        </form>
+        <h2>Uploaded Files</h2>
+        <table>
+            <tr>
+                <th>File Name</th>
+                <th>Duration</th>
+                <th>Extension</th>
+                <th>File Size</th>
+                <th>Play Audio</th>
+            </tr>
+            {% for audio in uploaded_files %}
+            <tr>
+                <td>{{ audio.audio_file.name }}</td>
+                <!-- <td>{{ audio.duration }} sec</td> -->
+               <!-- Convert durartion into minute_second format -->
+                <td>{{ audio.duration|convert_to_minutes_seconds }}</td>
+
+                <td>{{ audio.extension }}</td>
+                <td>{{ audio.file_size|filesizeformat }}</td>
+                <td>
+                    <audio controls class="mejs__player">
+                        <source src="{{ audio.audio_file.url }}" type="{{ audio.mime_type }}">
+                    </audio>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
