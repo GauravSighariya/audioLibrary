@@ -77,5 +77,9 @@ The application can be deployed locally for development using Django's built-in 
 ## GitHub and Documentation
 The project is version-controlled using Git and hosted on GitHub. The README.md file provides comprehensive documentation on installation, usage, features, and licensing. Proper documentation of functions and explanations of code sections are provided using inline comments and docstrings.
 
+![Screenshot (390)](https://github.com/GauravSighariya/audioLibrary/assets/84697605/2570d756-e503-4cae-beb3-784dfb7a0913)
+![Screenshot (391)](https://github.com/GauravSighariya/audioLibrary/assets/84697605/250cfe68-75ce-478e-848d-73e13b325cc5)
+
+
 ## Conclusion
 The Audio Upload Dashboard provides a user-friendly interface for uploading, managing, and playing audio files. By leveraging the power of Django and libraries like audioread, the project meets the criteria of coding practices, documentation, and creativity while delivering a functional and attractive web application.
